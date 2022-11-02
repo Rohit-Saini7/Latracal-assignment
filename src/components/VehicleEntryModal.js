@@ -104,27 +104,22 @@ const VehicleEntryModal = ({ number, from, setShowModal }) => {
 export default VehicleEntryModal;
 
 const Container = styled.div`
-  position: absolute;
-  top: -46%;
-  left: -12.5%;
+  position: fixed;
+  top: 0;
+  left: 0;
   height: 100vh;
   width: 100vw;
   background: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
   color: #fff;
-  z-index: 9;
+  z-index: 99;
   display: flex;
   align-items: center;
   justify-content: center;
-  &[data-from='checkout'] {
-    top: -48%;
-    left: -5%;
-  }
 `;
 
 const InnerContainer = styled.div`
-  width: 20vw;
   background-color: white;
   border-radius: 10px;
   color: black;

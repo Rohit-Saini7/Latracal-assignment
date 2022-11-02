@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 import VehicleEntryModal from './VehicleEntryModal';
@@ -8,7 +9,7 @@ const VehicleEntry = ({ number, driverName, checkInTime, checkOutTime }) => {
     setShowModal(true);
   };
   return (
-    <Container background='ffff'>
+    <React.Fragment>
       {showModal && (
         <VehicleEntryModal
           number={number}
@@ -16,19 +17,21 @@ const VehicleEntry = ({ number, driverName, checkInTime, checkOutTime }) => {
           setShowModal={setShowModal}
         />
       )}
-      <MainContent>
-        <h2>{number}</h2>
-        <h3>~{driverName}</h3>
-        <p>Check-In: {checkInTime}</p>
-        {!!checkOutTime ? (
-          <p>Checkout: {checkOutTime}</p>
-        ) : (
-          <CheckoutButton onClick={HandleCheckout}>
-            <span>Checkout</span>
-          </CheckoutButton>
-        )}
-      </MainContent>
-    </Container>
+      <Container background='ffff'>
+        <MainContent>
+          <h2>{number}</h2>
+          <h3>~{driverName}</h3>
+          <p>Check-In: {checkInTime}</p>
+          {!!checkOutTime ? (
+            <p>Checkout: {checkOutTime}</p>
+          ) : (
+            <CheckoutButton onClick={HandleCheckout}>
+              <span>Checkout</span>
+            </CheckoutButton>
+          )}
+        </MainContent>
+      </Container>
+    </React.Fragment>
   );
 };
 

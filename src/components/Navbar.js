@@ -35,8 +35,8 @@ const Container = styled.header`
   left: 10%;
   border-radius: 10px;
   @media screen and (max-width: 800px) {
-    width: 90%;
-    left: 5%;
+    width: 97%;
+    left: 1.5%;
   }
 `;
 
@@ -52,6 +52,7 @@ const Toolbar = styled.div`
   justify-content: space-between;
   @media screen and (max-width: 800px) {
     justify-content: space-around;
+    gap: 10px;
   }
 `;
 

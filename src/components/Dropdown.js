@@ -1,14 +1,28 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { AppContext } from '../context';
 
 const Dropdown = () => {
-  const numberOfVeh = 20;
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(0);
+  const [selectedOption, setSelectedOption] = useState(1);
+  const [numOfParkedCars, setNumOfParkedCars] = useState(0);
+  const [numOfTotalCars, setNumOfTotalCars] = useState(0);
+  const [numOfCheckedOutCars, setNumOfCheckedOutCars] = useState(0);
+  const { VehiclesList } = useContext(AppContext);
+  useEffect(() => {
+    setNumOfParkedCars(
+      VehiclesList.filter((vehicle) => !vehicle.checkOutTime).length
+    );
+    setNumOfTotalCars(VehiclesList.length);
+    setNumOfCheckedOutCars(
+      VehiclesList.filter((vehicle) => !!vehicle.checkOutTime).length
+    );
+  }, [VehiclesList]);
+
   const optionsList = [
-    `Parked Vehicles: ${numberOfVeh}`,
-    `Total Vehicles: ${numberOfVeh}`,
-    `Checked Out Vehicles: ${numberOfVeh}`,
+    `Parked Vehicles: ${numOfParkedCars}`,
+    `Total Vehicles: ${numOfTotalCars}`,
+    `Checked Out Vehicles: ${numOfCheckedOutCars}`,
   ];
 
   const toggleOptions = () => {
@@ -79,6 +93,9 @@ const Wrapper = styled.div`
   &:active {
     translate: 0 5px;
     z-index: 22;
+  }
+  @media screen and (max-width: 800px) {
+    max-width: calc(200px + 10vw);
   }
 `;
 
